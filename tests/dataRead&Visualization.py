@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from tkinter import filedialog
-f=filedialog.askopenfile(mode="rb",title="请打开记录的inner或out文件")
+f=filedialog.askopenfile(mode="rb",title="请打开记录的inner或out文件",initialdir="./..")
 arr=__import__("pickle").load(f)
 print(len(arr))
 arr2=np.arange(0,len(arr)*3,3)
