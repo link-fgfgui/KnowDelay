@@ -1,6 +1,6 @@
 from PySide2 import QtWidgets,QtCore,QtGui
 import numpy as np
-import pythonping,sys,pickle,time
+import pythonping,sys,pickle,time,os
 InnerPingList=np.array([])
 OutPingList=np.array([])
 class MainWindow(QtWidgets.QWidget):
@@ -143,8 +143,10 @@ ui.show()
 th.start()
 status=app.exec_()
 th.exit()
-with open(str(int(time.time()))+".inner","wb") as f:
+if not os.path.exists("./logs"):
+    os.mkdir("./logs")
+with open("./logs/"+str(int(time.time()))+".inner","wb") as f:
     pickle.dump(InnerPingList,f)
-with open(str(int(time.time()))+".out","wb") as f:
+with open("./logs/"+str(int(time.time()))+".out","wb") as f:
     pickle.dump(OutPingList,f)
 sys.exit(status)
